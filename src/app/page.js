@@ -1,14 +1,13 @@
 'use client';
 import Image from 'next/image';
-
 import snacksAPI from '@/utils/axiosInstance';
 import { useEffect } from 'react';
-
 export default function Home() {
   useEffect(() => {
-    snacksAPI.get('/snacks').then((response) => {
-      console.log(response.data);
+    snacksAPI.get('/snacks').then((res) => {
+      console.log(res.data);
     });
+
     return () => {
       console.log('Cleanup');
     };
