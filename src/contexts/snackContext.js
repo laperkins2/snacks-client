@@ -6,27 +6,28 @@ const snackContext = createContext();
 
 export const SnackProvider = ({ children }) => {
   const [snacks, setSnacks] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchSnacks = async () => {
       try {
         const response = await snacksAPI.get('/snacks');
-        console.log(response.data);
+
         setSnacks(response.data);
       } catch (error) {
         console.error('Error fetching snacks:', error);
+      } finally {
+        setLoading(false);
       }
     };
 
     fetchSnacks();
-
-    return () => {
-      console.log('Cleanup');
-    };
   }, []);
 
   return (
-    <snackContext.Provider value={{ snacks }}>{children}</snackContext.Provider>
+    <snackContext.Provider value={{ snacks, loading }}>
+      {children}
+    </snackContext.Provider>
   );
 };
 

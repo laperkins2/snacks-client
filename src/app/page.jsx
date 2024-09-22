@@ -10,9 +10,12 @@ export default function Home() {
   const { snacks } = useSnacks();
   return (
     <Suspense fallback={<Loading />}>
-      <div>
-        {snacks &&
-          snacks.map((snack, index) => <SnackCard key={index} snack={snack} />)}
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        {snacks && snacks.length > 0 ? (
+          snacks.map((snack, index) => <SnackCard key={index} snack={snack} />)
+        ) : (
+          <h2>No snacks available.</h2>
+        )}
       </div>
     </Suspense>
   );
