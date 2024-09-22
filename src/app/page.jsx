@@ -20,4 +20,4 @@ export default function Home() {
   );
 }
 
-export const Loading = <h2>Loading... </h2>;
+export const Loading = () => <h2>Loading... </h2>;
