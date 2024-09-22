@@ -2,12 +2,13 @@ import Image from 'next/image';
 export default function SnackCard({ snack }) {
   return (
     <div className="bg-white shadow-lg rounded-lg overflow-hidden">
-      {/* <Image
-          src={snack.image}
-          alt={snack.name}
-          layout="fill"
-          objectFit="cover"
-        />*/}
+      <Image
+        src={snack?.image}
+        alt={snack?.name}
+        width={400}
+        height={400}
+        className="object-cover"
+      ></Image>
       <h2 className="text-gray-800 text-lg font-semibold p-2">{snack?.name}</h2>
       <p className="text-gray-800 text-sm p-2">{snack?.description}</p>
       <p className="text-gray-800 text-sm p-2">{snack?.price}</p>
