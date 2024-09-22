@@ -7,20 +7,11 @@ const snackContext = createContext();
 export const SnackProvider = ({ children }) => {
   const [snacks, setSnacks] = useState([]);
 
-  // useEffect(() => {
-  //   snacksAPI.get('/snacks').then((response) => {
-  //     console.log(response.data);
-  //     setSnacks(response.data);
-  //   });
-
-  //   return () => {
-  //     console.log('Cleanup');
-  //   };
-  // }, []);
   useEffect(() => {
     const fetchSnacks = async () => {
       try {
         const response = await snacksAPI.get('/snacks');
+        console.log(response.data);
         setSnacks(response.data);
       } catch (error) {
         console.error('Error fetching snacks:', error);
@@ -28,6 +19,10 @@ export const SnackProvider = ({ children }) => {
     };
 
     fetchSnacks();
+
+    return () => {
+      console.log('Cleanup');
+    };
   }, []);
 
   return (
