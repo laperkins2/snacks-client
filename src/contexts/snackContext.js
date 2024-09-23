@@ -2,7 +2,7 @@
 import { createContext, useContext, useEffect, useState } from 'react';
 import snacksAPI from '@/utils/axiosInstance';
 
-const snackContext = createContext();
+const SnackContext = createContext();
 
 export const SnackProvider = ({ children }) => {
   const [snacks, setSnacks] = useState([]);
@@ -25,10 +25,10 @@ export const SnackProvider = ({ children }) => {
   }, []);
 
   return (
-    <snackContext.Provider value={{ snacks, loading }}>
+    <SnackContext.Provider value={{ snacks, loading }}>
       {children}
-    </snackContext.Provider>
+    </SnackContext.Provider>
   );
 };
 
-export const useSnacks = () => useContext(snackContext);
+export const useSnacks = () => useContext(SnackContext);
