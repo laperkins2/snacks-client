@@ -16,7 +16,7 @@ export default function Home() {
         ) : snacks.length > 0 ? (
           snacks.map((snack) => <SnackCard key={snack.id} snack={snack} />)
         ) : (
-          <h2>No snacks available.</h2>
+          <h2>snacks available.</h2>
         )}
       </div>
     </Suspense>
