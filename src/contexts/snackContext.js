@@ -8,20 +8,32 @@ export const SnackProvider = ({ children }) => {
   const [snacks, setSnacks] = useState([]);
   const [loading, setLoading] = useState(true);
 
+  // useEffect(() => {
+  //   const fetchSnacks = async () => {
+  //     try {
+  //       const response = await snacksAPI.get('/snacks');
+
+  //       setSnacks(response.data);
+  //     } catch (error) {
+  //       console.error('Error fetching snacks:', error);
+  //     } finally {
+  //       setLoading(false);
+  //     }
+  //   };
+
+  //   fetchSnacks();
+  // }, []);
   useEffect(() => {
-    const fetchSnacks = async () => {
-      try {
-        const response = await snacksAPI.get('/snacks');
-
+    snacksAPI
+      .get('/snacks')
+      .then((response) => {
         setSnacks(response.data);
-      } catch (error) {
-        console.error('Error fetching snacks:', error);
-      } finally {
         setLoading(false);
-      }
-    };
-
-    fetchSnacks();
+      })
+      .catch((error) => {
+        console.error('Error fetching snacks:', error);
+        setLoading(false);
+      });
   }, []);
 
   return (
